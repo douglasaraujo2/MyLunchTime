@@ -44,12 +44,12 @@ public class UsuarioDAO {
     }
 
     public Usuario getBy(String nome, String senha) {
-        SQLiteDatabase db = banco.getReadableDatabase();
+        SQLiteDatabase db = banco.getWritableDatabase();
         String colunas[] = {COLUNA_ID, COLUNA_NOME, COLUNA_SENHA};
-        String where = "usuario = ? and senha = ?";
+        String where = "usuario = '" + nome + "' and senha = '" + senha + "'";
         Cursor cursor = db.query(true, TABELA_USUARIOS, colunas, where, null, null, null, null, null);
         Usuario usuario = null;
-        if (cursor != null) {
+        if (cursor.moveToFirst()) {
             cursor.moveToFirst();
             usuario = new Usuario();
             usuario.setId(cursor.getColumnIndex(COLUNA_ID));

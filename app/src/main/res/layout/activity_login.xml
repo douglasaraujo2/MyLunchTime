@@ -7,7 +7,9 @@
     android:padding="@dimen/padding_padrao"
     tools:context="app.dougaraujo.com.mylunchtime.LoginActivity">
 
-    <android.support.design.widget.TextInputLayout style="@style/tilStyle">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilLogin"
+        style="@style/tilStyle">
 
         <EditText
             android:id="@+id/etLogin"
@@ -15,7 +17,9 @@
             android:hint="@string/login" />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout style="@style/tilStyle">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilPass"
+        style="@style/tilStyle">
 
         <EditText
             android:id="@+id/etSenha"
@@ -29,9 +33,11 @@
         style="@style/botao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="logar"
         android:text="@string/login" />
 
     <CheckBox
+        android:id="@+id/cbKeep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_padrao"

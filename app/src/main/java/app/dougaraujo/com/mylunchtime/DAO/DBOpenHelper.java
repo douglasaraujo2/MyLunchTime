@@ -32,6 +32,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try {
             iniciarDb(db, ctx, R.raw.db_criar);
+            lerEExecutarSQLScript(db, ctx, R.raw.usuarios);
         } catch (IOException e) {
             e.printStackTrace();
         }

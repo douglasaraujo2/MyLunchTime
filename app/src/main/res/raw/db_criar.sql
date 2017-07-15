@@ -1,5 +1,5 @@
-CREATE TABLE usuarios (
-    key id not null primary key
-        usuario varchar(255);
-        senha   varchar(30);
+CREATE TABLE IF NOT EXISTS usuarios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        usuario varchar(255),
+        senha   varchar(30)
 );
