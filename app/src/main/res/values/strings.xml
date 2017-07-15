@@ -5,6 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="login">hint_login</string>
-    <string name="senha">hint_pass</string>
+    <string name="login">Login</string>
+    <string name="pass">Password</string>
+    <string name="keep_connected">Keep Connected</string>
 </resources>

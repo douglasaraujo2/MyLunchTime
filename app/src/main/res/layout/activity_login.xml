@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/padding_padrao"
     tools:context="app.dougaraujo.com.mylunchtime.LoginActivity">
 
     <android.support.design.widget.TextInputLayout style="@style/tilStyle">
@@ -19,8 +20,20 @@
         <EditText
             android:id="@+id/etSenha"
             style="@style/etStyle"
-            android:hint="@string/senha"
+            android:hint="@string/pass"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
+    <Button
+        android:id="@+id/btnLogin"
+        style="@style/botao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login" />
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_padrao"
+        android:text="@string/keep_connected" />
 </LinearLayout>

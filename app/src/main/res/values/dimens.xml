@@ -7,4 +7,9 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="logoSplashWidth">150dp</dimen>
     <dimen name="logoSplashHeight">150dp</dimen>
+    <dimen name="padding_padrao_botao_customizado">10dp</dimen>
+    <dimen name="radius_padrao_botao_customizado">4dp</dimen>
+    <dimen name="width_padrao_stroke_botao_customizado">1dp</dimen>
+    <dimen name="botao_tamanho_texto">16sp</dimen>
+    <dimen name="padding_padrao">16dp</dimen>
 </resources>
