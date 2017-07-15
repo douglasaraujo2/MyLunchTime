@@ -22,7 +22,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     private static final int VERSAO_BANCO = 1;
     private Context ctx;
 
-    public DBOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public DBOpenHelper(Context context) {
         super(context, DB_NAME, null, VERSAO_BANCO);
         this.ctx = context;
     }
