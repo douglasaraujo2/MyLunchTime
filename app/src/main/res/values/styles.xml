@@ -46,5 +46,4 @@
         <item name="android:padding">@dimen/padding_padrao</item>
         <item name="android:textSize">@dimen/botao_tamanho_texto</item>
     </style>
-
 </resources>
