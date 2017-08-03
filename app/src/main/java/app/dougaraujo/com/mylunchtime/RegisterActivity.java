@@ -43,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
             UsuarioDAO usuario = new UsuarioDAO(this);
             boolean isInsert = usuario.insertNew(name, pass);
             if (!isInsert) {
+
                 Toast.makeText(this, "Usuário não cadastrado", Toast.LENGTH_SHORT);
             } else {
                 RegisterActivity.this.finish();
