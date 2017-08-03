@@ -10,4 +10,5 @@
     <string name="keep_connected">Keep Connected</string>
     <string name="txt_register">Register Here</string>
     <string name="txt_dont_have">Do not have an account?</string>
+    <string name="txt_user">User</string>
 </resources>

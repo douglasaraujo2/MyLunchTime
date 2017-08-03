@@ -2,8 +2,11 @@
 <resources>
     <string name="app_name">My Lunch Time</string>
     <string name="keep_connected">Continuar Conectado</string>
-    <string name="login">Usuario</string>
+    <string name="login">Login</string>
     <string name="navigation_drawer_close">Fechar barra leteral</string>
     <string name="navigation_drawer_open">Abrir barra lateral</string>
     <string name="pass">Senha</string>
+    <string name="txt_dont_have">Não tem uma conta?</string>
+    <string name="txt_register">Cadastre-se</string>
+    <string name="txt_user">Usuário</string>
 </resources>

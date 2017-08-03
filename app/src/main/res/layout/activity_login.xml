@@ -14,7 +14,7 @@
         <EditText
             android:id="@+id/etLogin"
             style="@style/etStyle"
-            android:hint="@string/login" />
+            android:hint="@string/txt_user" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
