@@ -78,10 +78,8 @@ public class UsuarioDAO {
             String colunas = "usuario,senha";
             ContentValues values = new ContentValues();
 
-            values.put("nome", nome);
-            values.put("senha", senha);
+
             try {
-                createSuccessful = db.insert(TABELA_USUARIOS, null, values) > 0;
                 SQLiteStatement stmt = db.compileStatement("INSERT INTO usuarios(usuario,senha) VALUES(?,?)");
                 stmt.bindString(1, nome);
                 stmt.bindString(2, senha);
@@ -91,7 +89,6 @@ public class UsuarioDAO {
                 db.close();
             } catch (Exception e) {
 
-//            Log.i(e.getMessage().toString());
             }
         } else {
             createSuccessful = true;

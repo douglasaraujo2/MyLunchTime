@@ -5,56 +5,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/padding_padrao"
-    tools:context="app.dougaraujo.com.mylunchtime.LoginActivity">
+    tools:context="app.dougaraujo.com.mylunchtime.RegisterActivity">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilLogin"
+        android:id="@+id/tilNewLogin"
         style="@style/tilStyle">
 
         <EditText
-            android:id="@+id/etLogin"
+            android:id="@+id/etNewLogin"
             style="@style/etStyle"
             android:hint="@string/txt_user" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilPass"
+        android:id="@+id/tilNewPass"
         style="@style/tilStyle">
 
         <EditText
-            android:id="@+id/etSenha"
+            android:id="@+id/etNewSenha"
             style="@style/etStyle"
             android:hint="@string/pass"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         style="@style/botao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="logar"
-        android:text="@string/login" />
-
-    <CheckBox
-        android:id="@+id/cbKeep"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_padrao"
-        android:text="@string/keep_connected" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/txt_dont_have" />
-
-    <TextView
-        android:id="@+id/tvRegister"
-        style="@style/clickableElement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
         android:onClick="register"
-        android:text="@string/txt_register" />
+        android:text="@string/txt_register_btn" />
 </LinearLayout>

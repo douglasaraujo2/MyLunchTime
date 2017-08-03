@@ -11,4 +11,6 @@
     <string name="txt_register">Register Here</string>
     <string name="txt_dont_have">Do not have an account?</string>
     <string name="txt_user">User</string>
+    <string name="txt_register_btn">Register</string>
+    <string name="fill_name">Fill the name</string>
 </resources>

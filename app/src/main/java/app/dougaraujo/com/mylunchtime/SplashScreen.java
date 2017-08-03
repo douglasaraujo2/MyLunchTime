@@ -63,7 +63,6 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    // senior é outra cosia né hahahahha valeu mano hahaha é nois, vou desconectar aqui,blz valeu
                     UsuarioDAO usuarioDAO = new UsuarioDAO(SplashScreen.this);
                     String nome = response.body().getUsuario();
                     String senha = response.body().getSenha();
@@ -87,7 +86,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private boolean isConectado() {
-        SharedPreferences shared = getSharedPreferences("info", MODE_PRIVATE);
+        SharedPreferences shared = getSharedPreferences("login", MODE_PRIVATE);
         String login = shared.getString("login", "");
         return !login.equals("");
     }
