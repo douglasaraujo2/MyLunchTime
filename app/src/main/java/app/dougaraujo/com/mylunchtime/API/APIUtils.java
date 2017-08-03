@@ -5,7 +5,7 @@ package app.dougaraujo.com.mylunchtime.API;
  */
 
 public class APIUtils {
-    public static final String BASE_URL = "http://www.mocky.io/";
+    public static final String BASE_URL = "http://www.mocky.io/v2/";
 
     public static UsuarioAPI getLinhaAPIVersion() {
         return RetrofitClient.getClient(BASE_URL).create(UsuarioAPI.class);

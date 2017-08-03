@@ -1,8 +1,10 @@
 package app.dougaraujo.com.mylunchtime.DAO;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -57,5 +59,45 @@ public class UsuarioDAO {
             usuario.setUsuario(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
         }
         return usuario;
+    }
+
+
+    public boolean loginCreated(String nome, String senha) {
+        boolean isCreated = false;
+        Usuario u = getBy(nome, senha);
+        if (u != null) {
+            isCreated = true;
+        }
+        return isCreated;
+    }
+
+    public boolean insertNew(String nome, String senha) {
+        boolean createSuccessful = false;
+        if (!loginCreated(nome, senha)) {
+            SQLiteDatabase db = banco.getWritableDatabase();
+            String colunas = "usuario,senha";
+            ContentValues values = new ContentValues();
+
+            values.put("nome", nome);
+            values.put("senha", senha);
+            try {
+                createSuccessful = db.insert(TABELA_USUARIOS, null, values) > 0;
+                SQLiteStatement stmt = db.compileStatement("INSERT INTO usuarios(usuario,senha) VALUES(?,?)");
+                stmt.bindString(1, nome);
+                stmt.bindString(2, senha);
+                long rowId = stmt.executeInsert();
+                createSuccessful = true;
+                db.setTransactionSuccessful();
+                db.close();
+            } catch (Exception e) {
+
+//            Log.i(e.getMessage().toString());
+            }
+        } else {
+            createSuccessful = true;
+        }
+
+
+        return createSuccessful;
     }
 }
