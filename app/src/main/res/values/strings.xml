@@ -13,4 +13,6 @@
     <string name="txt_user">User</string>
     <string name="txt_register_btn">Register</string>
     <string name="fill_name">Fill the name</string>
+    <string name="facebook_app_id">109311679750687</string>
+    <string name="fb_login_protocol_scheme">fb109311679750687</string>
 </resources>

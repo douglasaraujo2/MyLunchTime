@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
-        tvUsername = (TextView) header.findViewById(R.id.tvUsername);
+        //tvUsername = (TextView) header.findViewById(R.id.tvUsername);
         String usuario = LoginActivity.getDefault("login", this);
-        tvUsername.setText(usuario);
+        //tvUsername.setText(usuario);
     }
     @Override
     public void onBackPressed() {

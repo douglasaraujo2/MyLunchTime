@@ -12,14 +12,23 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.Profile;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
 import app.dougaraujo.com.mylunchtime.DAO.UsuarioDAO;
 import app.dougaraujo.com.mylunchtime.model.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
+    CallbackManager callbackManager;
     private TextInputLayout tilLogin;
     private TextInputLayout tilPass;
     private CheckBox isKeep;
     private EditText etLogin;
+    private LoginButton loginButton;
 
     public static void setDefaults(String key, String value, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -41,10 +50,26 @@ public class LoginActivity extends AppCompatActivity {
         tilPass = (TextInputLayout) findViewById(R.id.tilPass);
         etLogin = (EditText) findViewById(R.id.etLogin);
         isKeep = (CheckBox) findViewById(R.id.cbKeep);
+        loginButton = (LoginButton) findViewById(R.id.login_button);
         if (isConectado()) {
             navegarViewPrincipal();
         }
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
 
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
     }
 
     public void navegarViewPrincipal() {
@@ -54,8 +79,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean isConectado() {
 //        SharedPreferences shared = getSharedPreferences("info", MODE_PRIVATE);
+        Profile p = Profile.getCurrentProfile();
 
         String login = getDefault("login", this);
+        if (login.equals("")) {
+            login = p.getName();
+        }
         return !login.equals("");
     }
 
@@ -90,11 +119,12 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (data.hasExtra("LOGIN")) {
                 etLogin.setText(data.getExtras().getString("LOGIN"));
             }
         }
-        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
