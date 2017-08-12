@@ -32,5 +32,13 @@
                 android:title="Send" />
         </menu>
     </item>
+    <item android:title="@string/txt_logout">
+        <menu>
+            <item
+                android:id="@+id/navLogOut"
+                android:icon="@drawable/logout"
+                android:title="@string/txt_logout" />
+        </menu>
+    </item>
 
 </menu>

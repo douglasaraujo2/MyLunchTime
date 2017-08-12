@@ -1,10 +1,8 @@
 package app.dougaraujo.com.mylunchtime;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,7 +13,8 @@ import android.widget.Toast;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.Profile;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -30,46 +29,40 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etLogin;
     private LoginButton loginButton;
 
-    public static void setDefaults(String key, String value, Context context) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(key, value);
-        editor.apply();
-    }
-
-    public static String getDefault(String key, Context context) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getString(key, "");
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
         tilLogin = (TextInputLayout) findViewById(R.id.tilLogin);
         tilPass = (TextInputLayout) findViewById(R.id.tilPass);
         etLogin = (EditText) findViewById(R.id.etLogin);
         isKeep = (CheckBox) findViewById(R.id.cbKeep);
+        callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
-        if (isConectado()) {
-            navegarViewPrincipal();
-        }
+
+        // Callback registration
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
+                // App code
             }
 
             @Override
             public void onCancel() {
-
+                // App code
             }
 
             @Override
-            public void onError(FacebookException error) {
-
+            public void onError(FacebookException exception) {
+                // App code
             }
         });
+        if (isConectado()) {
+            navegarViewPrincipal();
+        }
     }
 
     public void navegarViewPrincipal() {
@@ -78,13 +71,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isConectado() {
-//        SharedPreferences shared = getSharedPreferences("info", MODE_PRIVATE);
-        Profile p = Profile.getCurrentProfile();
+        SharedPreferences shared = getSharedPreferences("info", MODE_PRIVATE);
+        //Profile p = new Profile();
+        //Profile p = Profile.getCurrentProfile();
 
-        String login = getDefault("login", this);
-        if (login.equals("")) {
-            login = p.getName();
-        }
+        String login = shared.getString("login", "");
+        ///if (login.equals("")) {
+        // login = p.getName();
+        //}
         return !login.equals("");
     }
 
@@ -96,11 +90,11 @@ public class LoginActivity extends AppCompatActivity {
         usuarioObj = usuarioDAO.getBy(usuario, senha);
         if (usuarioObj != null) {
             if (isKeep.isChecked()) {
-//                SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
-//                SharedPreferences.Editor editor = pref.edit();
-//                editor.putString("LOGIN", usuario);
-//                editor.apply();
-                setDefaults("login", usuario, this);
+                SharedPreferences pref = getSharedPreferences("info", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("login", usuario);
+                editor.apply();
+//                setDefaults("login", usuario, this);
             }
             navegarViewPrincipal();
 

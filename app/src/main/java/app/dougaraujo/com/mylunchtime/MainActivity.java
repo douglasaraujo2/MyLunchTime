@@ -1,5 +1,7 @@
 package app.dougaraujo.com.mylunchtime;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -42,8 +44,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
+        SharedPreferences pref = getSharedPreferences("info", MODE_PRIVATE);
+        //String usuario = pref.getString("login","");
         //tvUsername = (TextView) header.findViewById(R.id.tvUsername);
-        String usuario = LoginActivity.getDefault("login", this);
+        //String usuario = LoginActivity.getDefault("login", this);
         //tvUsername.setText(usuario);
     }
     @Override
@@ -96,6 +100,14 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.navLogOut) {
+            SharedPreferences pref = getSharedPreferences("info", MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.clear();
+            editor.apply();
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
