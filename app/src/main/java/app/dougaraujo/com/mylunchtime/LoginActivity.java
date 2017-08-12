@@ -18,6 +18,8 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import java.util.Arrays;
+
 import app.dougaraujo.com.mylunchtime.DAO.UsuarioDAO;
 import app.dougaraujo.com.mylunchtime.model.Usuario;
 
@@ -42,7 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         isKeep = (CheckBox) findViewById(R.id.cbKeep);
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
-
+        loginButton.setReadPermissions(Arrays.asList(
+                "public_profile", "email"));
         // Callback registration
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -72,13 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean isConectado() {
         SharedPreferences shared = getSharedPreferences("info", MODE_PRIVATE);
-        //Profile p = new Profile();
-        //Profile p = Profile.getCurrentProfile();
-
         String login = shared.getString("login", "");
-        ///if (login.equals("")) {
-        // login = p.getName();
-        //}
         return !login.equals("");
     }
 
@@ -94,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("login", usuario);
                 editor.apply();
-//                setDefaults("login", usuario, this);
             }
             navegarViewPrincipal();
 
