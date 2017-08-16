@@ -16,4 +16,10 @@
     <string name="facebook_app_id">109311679750687</string>
     <string name="fb_login_protocol_scheme">fb109311679750687</string>
     <string name="txt_logout">Logout</string>
+    <string name="txt_favorites">Favorites</string>
+    <string name="txt_new_favorite">New Favorite</string>
+    <string name="txt_locations">Locations</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

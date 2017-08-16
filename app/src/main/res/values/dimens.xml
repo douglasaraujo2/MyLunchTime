@@ -12,4 +12,5 @@
     <dimen name="width_padrao_stroke_botao_customizado">1dp</dimen>
     <dimen name="botao_tamanho_texto">16sp</dimen>
     <dimen name="padding_padrao">16dp</dimen>
+    <dimen name="di_text">20sp</dimen>
 </resources>
