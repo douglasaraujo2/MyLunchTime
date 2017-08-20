@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.navList) {
             FragmentNew fragmentNew = new FragmentNew();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.content_main, fragmentNew);
+            //transaction.replace(R.id.content_main, fragmentNew);
             transaction.addToBackStack(null);
             transaction.commit();
 
