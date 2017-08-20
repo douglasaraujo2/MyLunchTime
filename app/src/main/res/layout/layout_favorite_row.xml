@@ -12,8 +12,8 @@
         android:padding="@dimen/padding_padrao">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/iv_width"
+            android:layout_height="@dimen/iv_height"
             android:src="@drawable/store" />
 
         <TextView
@@ -21,7 +21,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:hint="Padaria Aurea"
             android:padding="@dimen/padding_padrao"
             android:textSize="@dimen/di_text" />
 
@@ -29,9 +28,7 @@
             android:id="@+id/tvEndereco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:hint="Avenida Prefeito Paulo Lauro,264"
-            android:textSize="15sp" />
+            android:textSize="@dimen/text_end_dimen" />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -13,4 +13,7 @@
     <dimen name="botao_tamanho_texto">16sp</dimen>
     <dimen name="padding_padrao">16dp</dimen>
     <dimen name="di_text">20sp</dimen>
+    <dimen name="text_end_dimen">15sp</dimen>
+    <dimen name="iv_width">50dp</dimen>
+    <dimen name="iv_height">100dp</dimen>
 </resources>

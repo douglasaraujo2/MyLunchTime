@@ -18,7 +18,7 @@ import app.dougaraujo.com.mylunchtime.R;
  */
 
 public class DBOpenHelper extends SQLiteOpenHelper {
-    private static final String DB_NAME = "usuarios.db";
+    private static final String DB_NAME = "lunchtime.db";
     private static final int VERSAO_BANCO = 1;
     private Context ctx;
 

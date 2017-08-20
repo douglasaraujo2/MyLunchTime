@@ -1,6 +1,7 @@
 package app.dougaraujo.com.mylunchtime.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -23,12 +24,16 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     @Override
     public FavoriteAdapter.FavoriteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View favoriteLayout = inflater.inflate(R.layout.layout_favorite_row, parent, false);
+        return new FavoriteViewHolder(favoriteLayout);
     }
 
     @Override
     public void onBindViewHolder(FavoriteAdapter.FavoriteViewHolder holder, int position) {
-
+        Favorite favorite = favoriteList.get(position);
+        holder.tvName.setText(favorite.getNome());
+        holder.tvAddress.setText(favorite.getEndereco());
     }
 
     @Override
