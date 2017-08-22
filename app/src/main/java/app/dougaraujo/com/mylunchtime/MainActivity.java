@@ -18,7 +18,8 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        NewFavoriteFragment.OnFragmentInteractionListener {
     private TextView tvUsername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,4 +122,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
