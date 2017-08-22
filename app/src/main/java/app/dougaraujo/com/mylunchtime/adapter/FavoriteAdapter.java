@@ -33,7 +33,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     public void onBindViewHolder(FavoriteAdapter.FavoriteViewHolder holder, int position) {
         Favorite favorite = favoriteList.get(position);
         holder.tvName.setText(favorite.getNome());
-        holder.tvAddress.setText(favorite.getEndereco());
+        holder.tvAddress.setText(favorite.getCep());
     }
 
     @Override

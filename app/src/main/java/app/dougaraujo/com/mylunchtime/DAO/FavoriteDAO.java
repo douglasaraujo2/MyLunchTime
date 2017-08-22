@@ -3,6 +3,7 @@ package app.dougaraujo.com.mylunchtime.DAO;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class FavoriteDAO {
     public static final String TABELA_FAVORITOS = "favoritos";
     public static final String COLUNA_ID = "id";
     public static final String COLUNA_NOME = "nome";
-    public static final String COLUNA_ENDERECO = "endereco";
+    public static final String COLUNA_CEP = "postalcode";
     public static final String COLUNA_LATIT = "latitude";
     public static final String COLUNA_LOGINT = "longitude";
     private DBOpenHelper banco;
@@ -37,7 +38,7 @@ public class FavoriteDAO {
             do {
                 favorite = new Favorite();
                 favorite.setNome(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
-                favorite.setEndereco(cursor.getString(cursor.getColumnIndex(COLUNA_ENDERECO)));
+                favorite.setCep(cursor.getString(cursor.getColumnIndex(COLUNA_CEP)));
                 favorite.setLatitude(cursor.getString(cursor.getColumnIndex(COLUNA_LATIT)));
                 favorite.setLongitude(cursor.getString(cursor.getColumnIndex(COLUNA_LOGINT)));
                 favorites.add(favorite);
@@ -45,5 +46,21 @@ public class FavoriteDAO {
 
         }
         return favorites;
+    }
+
+    public void insertNew(String name, String postalCode, String phone) {
+        SQLiteDatabase db = banco.getWritableDatabase();
+        try {
+            SQLiteStatement stmt = db.compileStatement("INSERT INTO favoritos(nome,postalcode,telefone) VALUES(?,?,?)");
+            stmt.bindString(1, name);
+            stmt.bindString(2, postalCode);
+            stmt.bindString(3, phone);
+            long rowId = stmt.executeInsert();
+            db.setTransactionSuccessful();
+            db.close();
+        } catch (Exception e) {
+
+        }
+
     }
 }

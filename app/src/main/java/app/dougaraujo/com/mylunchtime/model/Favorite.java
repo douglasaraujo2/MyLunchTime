@@ -6,9 +6,18 @@ package app.dougaraujo.com.mylunchtime.model;
 
 public class Favorite {
     private String nome;
-    private String endereco;
+    private String cep;
     private String latitude;
     private String longitude;
+    private String telefone;
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
     public String getNome() {
         return nome;
@@ -18,12 +27,12 @@ public class Favorite {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getCep() {
+        return cep;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public String getLatitude() {

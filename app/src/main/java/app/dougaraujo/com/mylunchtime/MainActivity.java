@@ -91,13 +91,18 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.navList) {
             //FragmentNew fragmentNew = new FragmentNew();
+            FavoritesFragment favoritesFragment = new FavoritesFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            //transaction.replace(R.id.content_main, fragmentNew);
+            transaction.replace(R.id.content_main, favoritesFragment);
             transaction.addToBackStack(null);
             transaction.commit();
 
         } else if (id == R.id.navNew) {
-
+            NewFavoriteFragment newFavoriteFragment = new NewFavoriteFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main, newFavoriteFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.navMap) {
 
         } else if (id == R.id.nav_manage) {

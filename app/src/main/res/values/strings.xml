@@ -22,4 +22,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_favorite">New Favorite</string>
+    <string name="txt_name">Name</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="txt_phone">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="txt_Save">Save</string>
 </resources>
