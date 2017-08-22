@@ -65,7 +65,7 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
         String code = etPostalCode.getText().toString();
         String phone = etPhone.getText().toString();
         favoriteDAO.insertNew(name, code, phone);
-        Toast.makeText(this.getActivity(), "Favorito adicionado com sucesso", Toast.LENGTH_SHORT);
+        Toast.makeText(this.getActivity(), "Favorito adicionado com sucesso", Toast.LENGTH_SHORT).show();
         clearFields();
 
     }
