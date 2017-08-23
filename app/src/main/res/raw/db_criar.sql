@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
 CREATE TABLE IF NOT EXISTS favoritos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome varchar(255),
-    postalcode varchar(200),
     telefone varchar(40),
     latitute varchar(200),
     longitude varchar(200)

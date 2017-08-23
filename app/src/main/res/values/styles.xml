@@ -40,10 +40,19 @@
         <item name="android:padding">@dimen/padding_padrao</item>
     </style>
 
+
     <style name="clickableElement">
         <item name="android:textColor">@color/clickable</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">@dimen/padding_padrao</item>
         <item name="android:textSize">@dimen/botao_tamanho_texto</item>
+    </style>
+
+    <style name="cardStyle">
+        <item name="android:padding">@dimen/padding_padrao</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+
     </style>
 </resources>

@@ -34,11 +34,12 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         Favorite favorite = favoriteList.get(position);
         holder.tvName.setText(favorite.getNome());
         holder.tvAddress.setText(favorite.getCep());
+        holder.tvPhone.setText(favorite.getTelefone());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return favoriteList.size();
     }
 
     public void update(List<Favorite> favoriteList) {
@@ -49,12 +50,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     public class FavoriteViewHolder extends RecyclerView.ViewHolder {
         TextView tvName;
         TextView tvAddress;
-
+        TextView tvPhone;
         public FavoriteViewHolder(View itemView) {
             super(itemView);
 
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvAddress = (TextView) itemView.findViewById(R.id.tvEndereco);
+            tvPhone = (TextView) itemView.findViewById(R.id.tvPhone);
         }
     }
 }

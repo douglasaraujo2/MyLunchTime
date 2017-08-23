@@ -22,6 +22,7 @@ public class FavoriteDAO {
     public static final String COLUNA_CEP = "postalcode";
     public static final String COLUNA_LATIT = "latitude";
     public static final String COLUNA_LOGINT = "longitude";
+    public static final String COLUNA_TELE = "telefone";
     private DBOpenHelper banco;
 
     public FavoriteDAO(Context context) {
@@ -39,8 +40,9 @@ public class FavoriteDAO {
                 favorite = new Favorite();
                 favorite.setNome(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
                 favorite.setCep(cursor.getString(cursor.getColumnIndex(COLUNA_CEP)));
-                favorite.setLatitude(cursor.getString(cursor.getColumnIndex(COLUNA_LATIT)));
-                favorite.setLongitude(cursor.getString(cursor.getColumnIndex(COLUNA_LOGINT)));
+                //favorite.setLatitude(cursor.getString(cursor.getColumnIndex(COLUNA_LATIT)));
+                //favorite.setLongitude(cursor.getString(cursor.getColumnIndex(COLUNA_LOGINT)));
+                favorite.setTelefone(cursor.getString(cursor.getColumnIndex(COLUNA_TELE)));
                 favorites.add(favorite);
             } while (cursor.moveToNext());
 
