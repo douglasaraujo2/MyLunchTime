@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -23,19 +24,7 @@ import app.dougaraujo.com.mylunchtime.model.Favorite;
  */
 public class FavoritesFragment extends Fragment {
     RecyclerView rvFavorites;
-//    ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-//        @Override
-//        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-//            return false;
-//        }
-//
-//        @Override
-//        public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-//            //Remove swiped item from list and notify the RecyclerView
-//            Toast.makeText(getActivity(), new String(String.valueOf(swipeDir)), Toast.LENGTH_SHORT).show();
-//        }
-//    };
-//    ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+    TextView tvEmpty;
 
     private FavoriteAdapter favoriteAdapter;
     private List<Favorite> favorites;
@@ -50,20 +39,32 @@ public class FavoritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View itemView = inflater.inflate(R.layout.fragment_favorites, container, false);
         rvFavorites = (RecyclerView) itemView.findViewById(R.id.rvFavorites);
-        FavoriteDAO favoriteDAO = new FavoriteDAO(getActivity());
-        favorites = favoriteDAO.getAll();
+        tvEmpty = (TextView) itemView.findViewById(R.id.tvEmpty);
+
         favoriteAdapter = new FavoriteAdapter(favorites);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 //;        itemTouchHelper.attachToRecyclerView(rvFavorites);
         rvFavorites.setLayoutManager(layoutManager);
         rvFavorites.setAdapter(favoriteAdapter);
         rvFavorites.setHasFixedSize(true);
-
+        loadData();
         initSwipe();
         return itemView;
 
     }
 
+    private void loadData() {
+        FavoriteDAO favoriteDAO = new FavoriteDAO(getActivity());
+        favorites = favoriteDAO.getAll();
+        if (favorites.isEmpty()) {
+            rvFavorites.setVisibility(View.GONE);
+            tvEmpty.setVisibility(View.VISIBLE);
+        } else {
+            tvEmpty.setVisibility(View.GONE);
+            rvFavorites.setVisibility(View.VISIBLE);
+        }
+        favoriteAdapter.update(favorites);
+    }
     private void initSwipe() {
         SwipeHelper swipeHelper = new SwipeHelper(getActivity(), rvFavorites) {
             @Override
@@ -78,8 +79,8 @@ public class FavoritesFragment extends Fragment {
                                 Favorite favorito = favorites.get(pos);
                                 FavoriteDAO favoriteDAO = new FavoriteDAO(getActivity());
                                 favoriteDAO.deleteFavorite(favorito.getId());
-                                favorites.remove(pos);
-                                favoriteAdapter.update(favorites);
+                                //favorites.remove(pos);
+                                loadData();
                                 Toast.makeText(getActivity(), "Registro deletado com sucesso", Toast.LENGTH_SHORT).show();
                             }
                         }

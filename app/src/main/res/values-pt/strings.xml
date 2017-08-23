@@ -23,4 +23,5 @@
     <string name="txt_new_favorite">Novo Favorito</string>
     <string name="txt_phone">Telefone</string>
     <string name="txt_register_btn">Cadastrar</string>
+    <string name="no_data_available">Sem Favoritos</string>
 </resources>

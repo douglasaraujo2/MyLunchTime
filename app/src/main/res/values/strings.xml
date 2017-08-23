@@ -32,4 +32,5 @@
     <string name="txt_edit">Edit</string>
     <string name="maps_key_webservice" translatable="false">AIzaSyDugKkbaVw68SpFgH0B-6KJZlgwmPsiTKk</string>
     <string name="maps_key_android" translatable="false">AIzaSyDYBlWLTTlQW2Od1kEe9XpgcyozquBP7Bs</string>
+    <string name="no_data_available">No favorites</string>
 </resources>

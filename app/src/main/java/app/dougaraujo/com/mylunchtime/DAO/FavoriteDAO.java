@@ -61,7 +61,7 @@ public class FavoriteDAO {
             db.setTransactionSuccessful();
             db.close();
         } catch (Exception e) {
-
+            throw e;
         }
     }
 
@@ -76,7 +76,7 @@ public class FavoriteDAO {
             db.setTransactionSuccessful();
             db.close();
         } catch (Exception e) {
-
+            throw e;
         }
 
     }
