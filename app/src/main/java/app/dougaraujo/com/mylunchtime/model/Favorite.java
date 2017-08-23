@@ -10,6 +10,15 @@ public class Favorite {
     private String latitude;
     private String longitude;
     private String telefone;
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTelefone() {
         return telefone;

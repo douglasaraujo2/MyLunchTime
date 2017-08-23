@@ -38,6 +38,7 @@ public class FavoriteDAO {
         if (cursor.moveToFirst()) {
             do {
                 favorite = new Favorite();
+                favorite.setId(cursor.getLong(cursor.getColumnIndex("id")));
                 favorite.setNome(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
                 favorite.setCep(cursor.getString(cursor.getColumnIndex(COLUNA_CEP)));
                 //favorite.setLatitude(cursor.getString(cursor.getColumnIndex(COLUNA_LATIT)));
@@ -48,6 +49,20 @@ public class FavoriteDAO {
 
         }
         return favorites;
+    }
+
+    public void deleteFavorite(long id) {
+        SQLiteDatabase db = banco.getWritableDatabase();
+        try {
+            SQLiteStatement stmt = db.compileStatement("DELETE FROM favoritos WHERE id = ?");
+            //stmt.bindString(1, name);
+            stmt.bindLong(1, id);
+            stmt.execute();
+            db.setTransactionSuccessful();
+            db.close();
+        } catch (Exception e) {
+
+        }
     }
 
     public void insertNew(String name, String postalCode, String phone) {

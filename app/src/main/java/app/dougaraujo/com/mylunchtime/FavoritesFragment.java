@@ -58,7 +58,7 @@ public class FavoritesFragment extends Fragment {
         rvFavorites.setLayoutManager(layoutManager);
         rvFavorites.setAdapter(favoriteAdapter);
         rvFavorites.setHasFixedSize(true);
-        favoriteAdapter.update(favorites);
+
         initSwipe();
         return itemView;
 
@@ -71,11 +71,16 @@ public class FavoritesFragment extends Fragment {
                 underlayButtons.add(new SwipeHelper.UnderlayButton(
                         getResources().getString(R.string.txt_delete),
                         0,
-                        Color.parseColor(String.valueOf(R.color.btnDelete)),
+                        Color.parseColor("#FF3C30"),
                         new SwipeHelper.UnderlayButtonClickListener() {
                             @Override
                             public void onClick(int pos) {
-                                Toast.makeText(getActivity(), "Clicou no delete", Toast.LENGTH_SHORT).show();
+                                Favorite favorito = favorites.get(pos);
+                                FavoriteDAO favoriteDAO = new FavoriteDAO(getActivity());
+                                favoriteDAO.deleteFavorite(favorito.getId());
+                                favorites.remove(pos);
+                                favoriteAdapter.update(favorites);
+                                Toast.makeText(getActivity(), "Registro deletado com sucesso", Toast.LENGTH_SHORT).show();
                             }
                         }
                 ));
@@ -83,7 +88,7 @@ public class FavoritesFragment extends Fragment {
                 underlayButtons.add(new SwipeHelper.UnderlayButton(
                         getResources().getString(R.string.txt_edit),
                         0,
-                        Color.parseColor(String.valueOf(R.color.btnEdit)),
+                        Color.parseColor("#025bff"),
                         new SwipeHelper.UnderlayButtonClickListener() {
                             @Override
                             public void onClick(int pos) {
