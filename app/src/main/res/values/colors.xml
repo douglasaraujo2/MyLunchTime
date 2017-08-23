@@ -10,4 +10,6 @@
     <color name="divider">#BDBDBD</color>
     <color name="background_splash">#FFF</color>
     <color name="clickable">#675cff</color>
+    <color name="btnDelete">#FF3C30</color>
+    <color name="btnEdit">#025bff</color>
 </resources>

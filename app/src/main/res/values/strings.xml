@@ -13,19 +13,23 @@
     <string name="txt_user">User</string>
     <string name="txt_register_btn">Register</string>
     <string name="fill_name">Fill the name</string>
-    <string name="facebook_app_id">109311679750687</string>
-    <string name="fb_login_protocol_scheme">fb109311679750687</string>
+    <string name="facebook_app_id" translatable="false">109311679750687</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb109311679750687</string>
     <string name="txt_logout">Logout</string>
     <string name="txt_favorites">Favorites</string>
     <string name="txt_new_favorite">New Favorite</string>
     <string name="txt_locations">Locations</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="new_favorite">New Favorite</string>
     <string name="txt_name">Name</string>
     <string name="postal_code">Postal Code</string>
     <string name="txt_phone">Phone Number</string>
     <string name="address">Address</string>
     <string name="txt_Save">Save</string>
+    <string name="txt_delete">Delete</string>
+    <string name="txt_edit">Edit</string>
+    <string name="maps_key_webservice" translatable="false">AIzaSyDugKkbaVw68SpFgH0B-6KJZlgwmPsiTKk</string>
+    <string name="maps_key_android" translatable="false">AIzaSyDYBlWLTTlQW2Od1kEe9XpgcyozquBP7Bs</string>
 </resources>

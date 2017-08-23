@@ -9,4 +9,18 @@
     <string name="txt_dont_have">Não tem uma conta?</string>
     <string name="txt_register">Cadastre-se</string>
     <string name="txt_user">Usuário</string>
+    <string name="address">Endereço</string>
+    <string name="fill_name">Prrencha o Nome</string>
+    <string name="new_favorite">Novo Favorito</string>
+    <string name="postal_code">CEP</string>
+    <string name="txt_Save">Salvar</string>
+    <string name="txt_delete">Remover</string>
+    <string name="txt_edit">Editar</string>
+    <string name="txt_favorites">Favoritos</string>
+    <string name="txt_locations">Locais</string>
+    <string name="txt_logout">Sair</string>
+    <string name="txt_name">Nome</string>
+    <string name="txt_new_favorite">Novo Favorito</string>
+    <string name="txt_phone">Telefone</string>
+    <string name="txt_register_btn">Cadastrar</string>
 </resources>
