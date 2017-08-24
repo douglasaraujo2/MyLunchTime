@@ -21,7 +21,6 @@
     <string name="txt_locations">Locations</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="new_favorite">New Favorite</string>
     <string name="txt_name">Name</string>
     <string name="postal_code">Postal Code</string>
@@ -33,4 +32,7 @@
     <string name="maps_key_webservice" translatable="false">AIzaSyDugKkbaVw68SpFgH0B-6KJZlgwmPsiTKk</string>
     <string name="maps_key_android" translatable="false">AIzaSyDYBlWLTTlQW2Od1kEe9XpgcyozquBP7Bs</string>
     <string name="no_data_available">No favorites</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

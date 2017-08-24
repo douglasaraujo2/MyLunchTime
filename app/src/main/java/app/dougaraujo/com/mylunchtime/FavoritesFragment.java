@@ -4,6 +4,7 @@ package app.dougaraujo.com.mylunchtime;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.List;
 
 import app.dougaraujo.com.mylunchtime.DAO.FavoriteDAO;
@@ -65,6 +67,7 @@ public class FavoritesFragment extends Fragment {
         }
         favoriteAdapter.update(favorites);
     }
+
     private void initSwipe() {
         SwipeHelper swipeHelper = new SwipeHelper(getActivity(), rvFavorites) {
             @Override
@@ -93,7 +96,19 @@ public class FavoritesFragment extends Fragment {
                         new SwipeHelper.UnderlayButtonClickListener() {
                             @Override
                             public void onClick(int pos) {
-                                Toast.makeText(getActivity(), "Clicou no edit", Toast.LENGTH_SHORT).show();
+                                Favorite favorito = favorites.get(pos);
+                                FavoriteDAO favoriteDAO = new FavoriteDAO(getActivity());
+                                favorito = favoriteDAO.selectSingleFavorite(favorito.getId());
+                                EditFavoriteFragment editFavoriteFragment = new EditFavoriteFragment();
+                                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                Bundle data = new Bundle();
+                                //data.putString("dados",new Gson().toJson(favorito));
+                                data.putSerializable("dados", (Serializable) favorito);
+                                editFavoriteFragment.setArguments(data);
+                                transaction.replace(R.id.content_main, editFavoriteFragment);
+                                transaction.addToBackStack(null);
+                                transaction.commit();
+
                             }
                         }
                 ));

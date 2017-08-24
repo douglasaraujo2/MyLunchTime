@@ -65,6 +65,24 @@ public class FavoriteDAO {
         }
     }
 
+    public Favorite selectSingleFavorite(long id) {
+
+        String query = "SELECT * FROM " + TABELA_FAVORITOS + " WHERE id = " + id;
+        SQLiteDatabase db = banco.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        Favorite fav = new Favorite();
+        if (cursor.moveToFirst()) {
+            fav.setId(cursor.getLong(cursor.getColumnIndex("id")));
+            fav.setNome(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
+            fav.setCep(cursor.getString(cursor.getColumnIndex(COLUNA_CEP)));
+            //favorite.setLatitude(cursor.getString(cursor.getColumnIndex(COLUNA_LATIT)));
+            //favorite.setLongitude(cursor.getString(cursor.getColumnIndex(COLUNA_LOGINT)));
+            fav.setTelefone(cursor.getString(cursor.getColumnIndex(COLUNA_TELE)));
+        } else {
+            throw new Error("Registro não encontrado");
+        }
+        return fav;
+    }
     public void insertNew(String name, String postalCode, String phone) {
         SQLiteDatabase db = banco.getWritableDatabase();
         try {
