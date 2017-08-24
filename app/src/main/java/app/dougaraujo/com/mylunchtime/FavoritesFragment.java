@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.List;
 
 import app.dougaraujo.com.mylunchtime.DAO.FavoriteDAO;
@@ -103,7 +102,9 @@ public class FavoritesFragment extends Fragment {
                                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                                 Bundle data = new Bundle();
                                 //data.putString("dados",new Gson().toJson(favorito));
-                                data.putSerializable("dados", (Serializable) favorito);
+                                //data.putSerializable("dados", (Serializable) favorito);
+                                data.putParcelable("dados", favorito);
+                                //editFavoriteFragment.set
                                 editFavoriteFragment.setArguments(data);
                                 transaction.replace(R.id.content_main, editFavoriteFragment);
                                 transaction.addToBackStack(null);
