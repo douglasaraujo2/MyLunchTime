@@ -1,7 +1,9 @@
 package app.dougaraujo.com.mylunchtime;
 
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +26,7 @@ import app.dougaraujo.com.mylunchtime.model.Favorite;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoritesFragment extends Fragment {
+public class FavoritesFragment extends Fragment implements AdapterView.OnItemClickListener {
     RecyclerView rvFavorites;
     TextView tvEmpty;
 
@@ -118,6 +121,22 @@ public class FavoritesFragment extends Fragment {
     }
 
 
+    public void callFavorite(View view) {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:900..."));
+        startActivity(intent);
+    }
+
+    public void call(View view) {
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Favorite fav = favorites.get(position);
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse(fav.getTelefone()));
+        startActivity(intent);
+    }
 }
 
 //https://maps.googleapis.com/maps/api/geocode/json?address=Avenida%20Prefeito%20Paulo%20Lauro,264&key=

@@ -98,4 +98,20 @@ public class FavoriteDAO {
         }
 
     }
+
+    public void updateFavorite(String name, String postalCode, String phone, long id) {
+        SQLiteDatabase db = banco.getWritableDatabase();
+        try {
+            SQLiteStatement stmt = db.compileStatement("UPDATE favoritos set nome = ?,postalcode = ?,telefone = ? where id = ?");
+            stmt.bindString(1, name);
+            stmt.bindString(2, postalCode);
+            stmt.bindString(3, phone);
+            stmt.bindLong(4, id);
+            stmt.executeUpdateDelete();
+            db.close();
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
 }

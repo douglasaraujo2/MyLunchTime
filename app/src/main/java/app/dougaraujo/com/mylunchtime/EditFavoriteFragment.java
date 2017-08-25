@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import app.dougaraujo.com.mylunchtime.DAO.FavoriteDAO;
 import app.dougaraujo.com.mylunchtime.model.Favorite;
 
 
@@ -64,6 +66,38 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnNewFavorite:
+                try {
+                    saveUpdate(v);
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
+                }
+                break;
+
+        }
 
     }
+
+    public void clearFields() {
+        etName.setText("");
+        etPostalCode.setText("");
+        etPhone.setText("");
+        etAddress.setText("");
+    }
+
+    public void saveUpdate(View view) throws Throwable {
+        String nome = etName.getText().toString();
+        String phone = etPhone.getText().toString();
+        String cep = etPostalCode.getText().toString();
+
+        FavoriteDAO favoriteDAO = new FavoriteDAO(getActivity());
+        favoriteDAO.updateFavorite(nome, cep, phone, fav.getId());
+        clearFields();
+        Toast.makeText(getActivity(), "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
+        //getActivity().getFragmentManager().popBackStack();
+        getFragmentManager().popBackStackImmediate();
+    }
+
+
 }

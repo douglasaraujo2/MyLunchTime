@@ -61,7 +61,7 @@
             style="@style/botao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="saveNew"
+            android:onClick="saveUpdate"
             android:text="@string/txt_Save" />
     </LinearLayout>
 
