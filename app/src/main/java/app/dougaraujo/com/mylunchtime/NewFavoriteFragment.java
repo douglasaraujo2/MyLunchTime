@@ -3,8 +3,8 @@ package app.dougaraujo.com.mylunchtime;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ import app.dougaraujo.com.mylunchtime.DAO.FavoriteDAO;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewFavoriteFragment extends Fragment implements View.OnClickListener {
+public class NewFavoriteFragment extends Fragment implements View.OnClickListener, LocationListener {
     protected double latitude, longitude;
     protected LocationManager locationManager;
     int PERMISSION_ALL = 1;
@@ -39,6 +40,8 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
     private TextInputLayout tilPostalCode;
     private TextInputLayout tilPhone;
     private Button btnNewFavorite;
+    private boolean canGetLocation;
+
     public NewFavoriteFragment() {
         // Required empty public constructor
 
@@ -55,12 +58,45 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
         }
         return true;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (!hasPermissions(getActivity(), PERMISSIONS)) {
             ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, PERMISSION_ALL);
         }
+        PERMISSION_ALL = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
+        //ContextCompat.checkSelfPermission(getActivity())
+        if (PERMISSION_ALL == PackageManager.PERMISSION_GRANTED) {
+            locationManager = (LocationManager) getActivity()
+                    .getSystemService(Context.LOCATION_SERVICE);
+            // getting GPS status
+            boolean isGPSEnabled = locationManager
+                    .isProviderEnabled(LocationManager.GPS_PROVIDER);
+            // getting network status
+            boolean isNetworkEnabled = locationManager
+                    .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            if (!isGPSEnabled && !isNetworkEnabled) {
+                // no network provider is enabled
+            } else {
+                this.canGetLocation = true;
+                if (isNetworkEnabled) {
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+                    Log.d("activity", "LOC Network Enabled");
+                    if (locationManager != null) {
+                        Location location = locationManager
+                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (location != null) {
+                            Log.d("activity", "LOC by Network");
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                        }
+                    }
+                }
+
+            }
+        }
+
         View itemView = inflater.inflate(R.layout.fragment_new_favorite, container, false);
         // Inflate the layout for this fragment
         etName = (EditText) itemView.findViewById(R.id.etName);
@@ -118,17 +154,7 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
 
         }
         try {
-            PERMISSION_ALL = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
-            //ContextCompat.checkSelfPermission(getActivity())
-            if (PERMISSION_ALL == PackageManager.PERMISSION_GRANTED) {
-                Criteria criteria = new Criteria();
-                LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-                String provider = locationManager.getBestProvider(criteria, true);
-                Location location = locationManager.getLastKnownLocation(provider);
-                latitude = location.getLatitude();
-                longitude = location.getLongitude();
 
-            }
             String lat = new Double(latitude).toString();
             String longi = new Double(longitude).toString();
             favoriteDAO.insertNew(name, code, phone, lat, longi);
@@ -147,6 +173,27 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
             case R.id.btnNewFavorite:
                 saveNew(v);
         }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 
     public interface OnFragmentInteractionListener {

@@ -3,14 +3,15 @@ package app.dougaraujo.com.mylunchtime;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -37,9 +38,13 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         View itemView = inflater.inflate(R.layout.fragment_maps, container, false);
         // Inflate the layout for this fragment
-        MapFragment mapFragment = (MapFragment) getActivity().getFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        FragmentManager fm = getChildFragmentManager();
+        SupportMapFragment supportMapFragment = SupportMapFragment.newInstance();
+        fm.beginTransaction().replace(R.id.frameMap, supportMapFragment).commit();
+//        MapFragment mapFragment = (MapFragment) getActivity().getFragmentManager()
+//                .findFragmentById();
+//        mapFragment.getMapAsync(this);
+        supportMapFragment.getMapAsync(this);
         return itemView;
     }
 
