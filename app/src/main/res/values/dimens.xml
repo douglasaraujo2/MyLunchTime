@@ -18,4 +18,6 @@
     <dimen name="iv_height">100dp</dimen>
     <dimen name="dimen_title">18sp</dimen>
     <dimen name="width_card">340dp</dimen>
+    <dimen name="dimen_welcome">18sp</dimen>
+    <dimen name="dimen_texto_dev">18sp</dimen>
 </resources>

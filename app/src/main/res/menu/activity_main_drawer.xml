@@ -15,9 +15,9 @@
             android:icon="@drawable/maps"
             android:title="@string/txt_locations" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/navAbout"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="@string/txt_about" />
     </group>
 
 

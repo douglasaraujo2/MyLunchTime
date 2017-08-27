@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
         SharedPreferences pref = getSharedPreferences("info", MODE_PRIVATE);
-        //String usuario = pref.getString("login","");
-        //tvUsername = (TextView) header.findViewById(R.id.tvUsername);
+        String usuario = pref.getString("login", "");
+        tvUsername = (TextView) header.findViewById(R.id.tvUsername);
         //String usuario = LoginActivity.getDefault("login", this);
-        //tvUsername.setText(usuario);
+        tvUsername.setText(usuario);
     }
     @Override
     public void onBackPressed() {
@@ -76,10 +76,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -106,8 +102,12 @@ public class MainActivity extends AppCompatActivity
             transaction.commit();
         } else if (id == R.id.navMap) {
 
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.navAbout) {
+            AboutFragment aboutFragment = new AboutFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main, aboutFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.navLogOut) {
             SharedPreferences pref = getSharedPreferences("info", MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();

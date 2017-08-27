@@ -24,4 +24,10 @@
     <string name="txt_phone">Telefone</string>
     <string name="txt_register_btn">Cadastrar</string>
     <string name="no_data_available">Sem Favoritos</string>
+    <string name="hello_blank_fragment"></string>
+    <string name="txt_about">Sobre</string>
+    <string name="txt_welcome">Encontre todos seus pontos de almoço favoritos aqui</string>
+    <string name="txt_call">Ligar</string>
+    <string name="txt_version">Versão:</string>
+    <string name="developed_by">Desenvolvido Por: Douglas Araujo</string>
 </resources>
