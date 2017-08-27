@@ -17,9 +17,11 @@ import app.dougaraujo.com.mylunchtime.model.Favorite;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder> {
     private List<Favorite> favoriteList;
+    private OnItemClickListener onItemClickListener;
 
-    public FavoriteAdapter(List<Favorite> favoriteList) {
+    public FavoriteAdapter(List<Favorite> favoriteList, OnItemClickListener onItemClickListener) {
         this.favoriteList = favoriteList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -30,8 +32,14 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     }
 
     @Override
-    public void onBindViewHolder(FavoriteAdapter.FavoriteViewHolder holder, int position) {
+    public void onBindViewHolder(FavoriteAdapter.FavoriteViewHolder holder, final int position) {
         Favorite favorite = favoriteList.get(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(favoriteList.get(position));
+            }
+        });
         holder.tvName.setText(favorite.getNome());
         holder.tvAddress.setText(favorite.getCep());
         holder.tvPhone.setText(favorite.getTelefone());

@@ -58,7 +58,6 @@ public class FavoriteDAO {
             //stmt.bindString(1, name);
             stmt.bindLong(1, id);
             stmt.execute();
-            db.setTransactionSuccessful();
             db.close();
         } catch (Exception e) {
             throw e;
@@ -91,7 +90,6 @@ public class FavoriteDAO {
             stmt.bindString(2, postalCode);
             stmt.bindString(3, phone);
             long rowId = stmt.executeInsert();
-            db.setTransactionSuccessful();
             db.close();
         } catch (Exception e) {
             throw e;
