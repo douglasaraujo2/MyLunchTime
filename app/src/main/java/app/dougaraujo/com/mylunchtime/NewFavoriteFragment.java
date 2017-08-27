@@ -66,7 +66,7 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
         etName = (EditText) itemView.findViewById(R.id.etName);
         etPostalCode = (EditText) itemView.findViewById(R.id.etPostalCode);
         etPhone = (EditText) itemView.findViewById(R.id.etPhoneNumber);
-        etAddress = (EditText) itemView.findViewById(R.id.etAddress);
+        //etAddress = (EditText) itemView.findViewById(R.id.etAddress);
         tilName = (TextInputLayout) itemView.findViewById(R.id.tilName);
         tilPostalCode = (TextInputLayout) itemView.findViewById(R.id.tilPostalCode);
         tilPhone = (TextInputLayout) itemView.findViewById(R.id.tilPhoneNumber);
@@ -84,7 +84,7 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
         etName.setText("");
         etPostalCode.setText("");
         etPhone.setText("");
-        etAddress.setText("");
+        //etAddress.setText("");
     }
 
     public void saveNew(View view) {
@@ -92,6 +92,31 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
         String name = etName.getText().toString();
         String code = etPostalCode.getText().toString();
         String phone = etPhone.getText().toString();
+        if (name.isEmpty()) {
+            tilName.setError(getString(R.string.fill_name));
+            tilName.setErrorEnabled(true);
+            return;
+        } else {
+            tilName.setError("");
+            tilName.setErrorEnabled(false);
+        }
+        if (code.isEmpty()) {
+            tilPostalCode.setError(getString(R.string.fill_postal));
+            tilPostalCode.setErrorEnabled(true);
+            return;
+        } else {
+            tilPostalCode.setError("");
+            tilPostalCode.setErrorEnabled(false);
+        }
+        if (phone.isEmpty()) {
+            tilPhone.setError(getString(R.string.fill_phone));
+            tilPhone.setErrorEnabled(true);
+            return;
+        } else {
+            tilPhone.setError("");
+            tilPhone.setErrorEnabled(false);
+
+        }
         try {
             PERMISSION_ALL = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
             //ContextCompat.checkSelfPermission(getActivity())

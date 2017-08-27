@@ -40,4 +40,6 @@
     <string name="txt_about">About</string>
     <string name="txt_version">Version Code:</string>
     <string name="developed_by">Developed By: Douglas Araujo</string>
+    <string name="fill_phone">Fill the phone</string>
+    <string name="fill_postal">Fill the postal code</string>
 </resources>

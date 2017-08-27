@@ -30,4 +30,6 @@
     <string name="txt_call">Ligar</string>
     <string name="txt_version">Versão:</string>
     <string name="developed_by">Desenvolvido Por: Douglas Araujo</string>
+    <string name="fill_phone">Preencha o Telefone</string>
+    <string name="fill_postal">Preencha o CEP</string>
 </resources>
