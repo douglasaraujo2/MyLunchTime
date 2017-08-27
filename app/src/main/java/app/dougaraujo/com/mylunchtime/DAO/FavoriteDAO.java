@@ -82,13 +82,16 @@ public class FavoriteDAO {
         }
         return fav;
     }
-    public void insertNew(String name, String postalCode, String phone) {
+
+    public void insertNew(String name, String postalCode, String phone, String lat, String longi) {
         SQLiteDatabase db = banco.getWritableDatabase();
         try {
-            SQLiteStatement stmt = db.compileStatement("INSERT INTO favoritos(nome,postalcode,telefone) VALUES(?,?,?)");
+            SQLiteStatement stmt = db.compileStatement("INSERT INTO favoritos(nome,postalcode,telefone,latitute,longitude) VALUES(?,?,?,?,?)");
             stmt.bindString(1, name);
             stmt.bindString(2, postalCode);
             stmt.bindString(3, phone);
+            stmt.bindString(4, lat);
+            stmt.bindString(5, longi);
             long rowId = stmt.executeInsert();
             db.close();
         } catch (Exception e) {
