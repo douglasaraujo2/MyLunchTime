@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS favoritos (
     nome varchar(255),
     postalcode varchar(255),
     telefone varchar(40),
-    latitute varchar(200),
+    latitude varchar(200),
     longitude varchar(200)
 );

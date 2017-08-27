@@ -41,11 +41,11 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
         View itemView = inflater.inflate(R.layout.fragment_edit_favorite, container, false);
         fav = getArguments().getParcelable("dados");
         etName = (EditText) itemView.findViewById(R.id.etName);
-        etPostalCode = (EditText) itemView.findViewById(R.id.etPostalCode);
+        //etPostalCode = (EditText) itemView.findViewById(R.id.etPostalCode);
         etPhone = (EditText) itemView.findViewById(R.id.etPhoneNumber);
 //        etAddress = (EditText) itemView.findViewById(R.id.etAddress);
         tilName = (TextInputLayout) itemView.findViewById(R.id.tilName);
-        tilPostalCode = (TextInputLayout) itemView.findViewById(R.id.tilPostalCode);
+//        ti\lPostalCode = (TextInputLayout) itemView.findViewById(R.id.tilPostalCode);
         tilPhone = (TextInputLayout) itemView.findViewById(R.id.tilPhoneNumber);
 
 
@@ -61,7 +61,7 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
     public void fillFields() {
         etName.setText(fav.getNome());
         etPhone.setText(fav.getTelefone());
-        etPostalCode.setText(fav.getCep());
+        //etPostalCode.setText(fav.getCep());
     }
 
     @Override
@@ -83,13 +83,12 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
         etName.setText("");
         etPostalCode.setText("");
         etPhone.setText("");
-//        etAddress.setText("");
     }
 
     public void saveUpdate(View view) throws Throwable {
         String nome = etName.getText().toString();
         String phone = etPhone.getText().toString();
-        String cep = etPostalCode.getText().toString();
+//        String cep = etPostalCode.getText().toString();
         if (nome.isEmpty()) {
             tilName.setError(getString(R.string.fill_name));
             tilName.setErrorEnabled(true);
@@ -98,14 +97,7 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
             tilName.setError("");
             tilName.setErrorEnabled(false);
         }
-        if (cep.isEmpty()) {
-            tilPostalCode.setError(getString(R.string.fill_postal));
-            tilPostalCode.setErrorEnabled(true);
-            return;
-        } else {
-            tilPostalCode.setError("");
-            tilPostalCode.setErrorEnabled(false);
-        }
+
         if (phone.isEmpty()) {
             tilPhone.setError(getString(R.string.fill_phone));
             tilPhone.setErrorEnabled(true);
@@ -116,7 +108,7 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
 
         }
         FavoriteDAO favoriteDAO = new FavoriteDAO(getActivity());
-        favoriteDAO.updateFavorite(nome, cep, phone, fav.getId());
+        favoriteDAO.updateFavorite(nome, phone, fav.getId());
         clearFields();
         Toast.makeText(getActivity(), "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
         //getActivity().getFragmentManager().popBackStack();

@@ -22,18 +22,6 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilPostalCode"
-            style="@style/tilStyle"
-            android:padding="@dimen/padding_padrao">
-
-            <EditText
-                android:id="@+id/etPostalCode"
-                style="@style/etStyle"
-                android:hint="@string/postal_code" />
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
             android:id="@+id/tilPhoneNumber"
             style="@style/tilStyle"
             android:padding="@dimen/padding_padrao">

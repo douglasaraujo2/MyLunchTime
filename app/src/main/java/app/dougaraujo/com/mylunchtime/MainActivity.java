@@ -101,7 +101,11 @@ public class MainActivity extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
         } else if (id == R.id.navMap) {
-
+            MapsFragment mapsFragment = new MapsFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main, mapsFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.navAbout) {
             AboutFragment aboutFragment = new AboutFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

@@ -32,7 +32,7 @@ public class FavoriteDAO {
     public List<Favorite> getAll() {
         List<Favorite> favorites = new LinkedList<>();
         String query = "SELECT * FROM " + TABELA_FAVORITOS;
-        SQLiteDatabase db = banco.getWritableDatabase();
+        SQLiteDatabase db = banco.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Favorite favorite = null;
         if (cursor.moveToFirst()) {
@@ -41,8 +41,8 @@ public class FavoriteDAO {
                 favorite.setId(cursor.getLong(cursor.getColumnIndex("id")));
                 favorite.setNome(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
                 favorite.setCep(cursor.getString(cursor.getColumnIndex(COLUNA_CEP)));
-                //favorite.setLatitude(cursor.getString(cursor.getColumnIndex(COLUNA_LATIT)));
-                //favorite.setLongitude(cursor.getString(cursor.getColumnIndex(COLUNA_LOGINT)));
+                favorite.setLatitude(cursor.getString(cursor.getColumnIndex(COLUNA_LATIT)));
+                favorite.setLongitude(cursor.getString(cursor.getColumnIndex(COLUNA_LOGINT)));
                 favorite.setTelefone(cursor.getString(cursor.getColumnIndex(COLUNA_TELE)));
                 favorites.add(favorite);
             } while (cursor.moveToNext());
@@ -86,7 +86,7 @@ public class FavoriteDAO {
     public void insertNew(String name, String postalCode, String phone, String lat, String longi) {
         SQLiteDatabase db = banco.getWritableDatabase();
         try {
-            SQLiteStatement stmt = db.compileStatement("INSERT INTO favoritos(nome,postalcode,telefone,latitute,longitude) VALUES(?,?,?,?,?)");
+            SQLiteStatement stmt = db.compileStatement("INSERT INTO favoritos(nome,postalcode,telefone,latitude,longitude) VALUES(?,?,?,?,?)");
             stmt.bindString(1, name);
             stmt.bindString(2, postalCode);
             stmt.bindString(3, phone);
@@ -100,14 +100,13 @@ public class FavoriteDAO {
 
     }
 
-    public void updateFavorite(String name, String postalCode, String phone, long id) {
+    public void updateFavorite(String name, String phone, long id) {
         SQLiteDatabase db = banco.getWritableDatabase();
         try {
-            SQLiteStatement stmt = db.compileStatement("UPDATE favoritos set nome = ?,postalcode = ?,telefone = ? where id = ?");
+            SQLiteStatement stmt = db.compileStatement("UPDATE favoritos set nome = ?,telefone = ? where id = ?");
             stmt.bindString(1, name);
-            stmt.bindString(2, postalCode);
-            stmt.bindString(3, phone);
-            stmt.bindLong(4, id);
+            stmt.bindString(2, phone);
+            stmt.bindLong(3, id);
             stmt.executeUpdateDelete();
             db.close();
         } catch (Exception e) {
