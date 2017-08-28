@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences.Editor editor = pref.edit();
             editor.clear();
             editor.apply();
+            LoginManager.getInstance().logOut();
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
             finish();
