@@ -4,43 +4,47 @@
     android:layout_height="match_parent"
     tools:context="app.dougaraujo.com.mylunchtime.EditFavoriteFragment">
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilName"
-            style="@style/tilStyle"
-            android:padding="@dimen/padding_padrao">
-
-            <EditText
-                android:id="@+id/etName"
-                style="@style/etStyle"
-                android:hint="@string/txt_name" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilPhoneNumber"
-            style="@style/tilStyle"
-            android:padding="@dimen/padding_padrao">
-
-            <EditText
-                android:id="@+id/etPhoneNumber"
-                style="@style/etStyle"
-                android:hint="@string/txt_phone"
-                android:inputType="phone" />
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:id="@+id/btnNewFavorite"
-            style="@style/botao"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="saveUpdate"
-            android:text="@string/txt_Save" />
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilName"
+                style="@style/tilStyle"
+                android:padding="@dimen/padding_padrao">
+
+                <EditText
+                    android:id="@+id/etName"
+                    style="@style/etStyle"
+                    android:hint="@string/txt_name" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilPhoneNumber"
+                style="@style/tilStyle"
+                android:padding="@dimen/padding_padrao">
+
+                <EditText
+                    android:id="@+id/etPhoneNumber"
+                    style="@style/etStyle"
+                    android:hint="@string/txt_phone"
+                    android:inputType="phone" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnNewFavorite"
+                style="@style/botao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="saveUpdate"
+                android:text="@string/txt_Save" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </FrameLayout>

@@ -20,4 +20,5 @@
     <dimen name="width_card">340dp</dimen>
     <dimen name="dimen_welcome">18sp</dimen>
     <dimen name="dimen_texto_dev">18sp</dimen>
+    <dimen name="dimen_logo_header">80dp</dimen>
 </resources>
