@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "146827251583",
+    "firebase_url": "https://lunchtime-1503494616881.firebaseio.com",
+    "project_id": "lunchtime-1503494616881",
+    "storage_bucket": "lunchtime-1503494616881.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146827251583:android:209d7bee2bde88a7",
+        "android_client_info": {
+          "package_name": "app.dougaraujo.com.mylunchtime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146827251583-tj4u2nhj2f4hjf1lbn8arn8bie9s4hsr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9ZUgRaenOKcxM7S3Q2hvOMzBgZ0M6gkw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
