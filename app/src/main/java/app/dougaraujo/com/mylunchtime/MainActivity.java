@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
         SharedPreferences pref = getSharedPreferences("info", MODE_PRIVATE);
-        String usuario = pref.getString("login", "");
+        String usuario = pref.getString("username", "");
         tvUsername = (TextView) header.findViewById(R.id.tvUsername);
         //String usuario = LoginActivity.getDefault("login", this);
         tvUsername.setText(usuario);

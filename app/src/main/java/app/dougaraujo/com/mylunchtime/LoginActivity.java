@@ -86,12 +86,14 @@ public class LoginActivity extends AppCompatActivity {
         Usuario usuarioObj = new Usuario();
         usuarioObj = usuarioDAO.getBy(usuario, senha);
         if (usuarioObj != null) {
+            SharedPreferences pref = getSharedPreferences("info", MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
             if (isKeep.isChecked()) {
-                SharedPreferences pref = getSharedPreferences("info", MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
                 editor.putString("login", usuario);
-                editor.apply();
+
             }
+            editor.putString("username", usuario);
+            editor.apply();
             navegarViewPrincipal();
 
             //LoginActivity.this.finish();
