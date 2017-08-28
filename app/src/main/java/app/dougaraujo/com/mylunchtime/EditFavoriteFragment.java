@@ -41,16 +41,10 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
         View itemView = inflater.inflate(R.layout.fragment_edit_favorite, container, false);
         fav = getArguments().getParcelable("dados");
         etName = (EditText) itemView.findViewById(R.id.etName);
-        //etPostalCode = (EditText) itemView.findViewById(R.id.etPostalCode);
         etPhone = (EditText) itemView.findViewById(R.id.etPhoneNumber);
-//        etAddress = (EditText) itemView.findViewById(R.id.etAddress);
         tilName = (TextInputLayout) itemView.findViewById(R.id.tilName);
-//        ti\lPostalCode = (TextInputLayout) itemView.findViewById(R.id.tilPostalCode);
         tilPhone = (TextInputLayout) itemView.findViewById(R.id.tilPhoneNumber);
 
-
-//        btnNewFavorite = (Button) itemView.findViewById(R.id.btnNewFavorite);
-//        btnNewFavorite.setOnClickListener(this);
         etPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         btnNewFavorite = (Button) itemView.findViewById(R.id.btnNewFavorite);
         btnNewFavorite.setOnClickListener(this);
@@ -61,7 +55,6 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
     public void fillFields() {
         etName.setText(fav.getNome());
         etPhone.setText(fav.getTelefone());
-        //etPostalCode.setText(fav.getCep());
     }
 
     @Override
@@ -81,7 +74,6 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
 
     public void clearFields() {
         etName.setText("");
-        etPostalCode.setText("");
         etPhone.setText("");
     }
 
