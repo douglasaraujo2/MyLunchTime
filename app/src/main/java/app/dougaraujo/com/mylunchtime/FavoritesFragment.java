@@ -21,6 +21,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,9 +41,9 @@ public class FavoritesFragment extends Fragment {
     TextView tvEmpty;
     int PERMISSION_ALL = 1;
     String[] PERMISSIONS = {Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE};
+    ShareButton shareButton;
     private FavoriteAdapter favoriteAdapter;
     private List<Favorite> favorites;
-
     public FavoritesFragment() {
         // Required empty public constructor
     }
@@ -62,7 +65,9 @@ public class FavoritesFragment extends Fragment {
         View itemView = inflater.inflate(R.layout.fragment_favorites, container, false);
         rvFavorites = (RecyclerView) itemView.findViewById(R.id.rvFavorites);
         tvEmpty = (TextView) itemView.findViewById(R.id.tvEmpty);
+        shareButton = (ShareButton) itemView.findViewById(R.id.shareButton);
 
+        //
         favoriteAdapter = new FavoriteAdapter(new ArrayList<Favorite>(), new OnItemClickListener() {
             @Override
             public void onItemClick(Favorite fav) {
@@ -83,6 +88,7 @@ public class FavoritesFragment extends Fragment {
         rvFavorites.setLayoutManager(layoutManager);
         rvFavorites.setAdapter(favoriteAdapter);
         rvFavorites.setHasFixedSize(true);
+
         loadData();
         initSwipe();
         return itemView;
@@ -150,6 +156,16 @@ public class FavoritesFragment extends Fragment {
                 ));
             }
         };
+    }
+
+
+    public void shareContent(View view) {
+
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                .build();
+
+
     }
 }
 
