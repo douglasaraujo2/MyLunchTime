@@ -3,6 +3,7 @@ package app.dougaraujo.com.mylunchtime;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
 
@@ -51,8 +53,10 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
     }
 
     public void shareContent(View view) {
-
-        shareDialog.show(null);
+        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("http://duxinnovation.com"))
+                .build();
+        shareDialog.show(linkContent);
     }
 
     @Override
