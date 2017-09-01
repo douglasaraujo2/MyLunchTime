@@ -65,7 +65,6 @@ public class FavoritesFragment extends Fragment {
         View itemView = inflater.inflate(R.layout.fragment_favorites, container, false);
         rvFavorites = (RecyclerView) itemView.findViewById(R.id.rvFavorites);
         tvEmpty = (TextView) itemView.findViewById(R.id.tvEmpty);
-        shareButton = (ShareButton) itemView.findViewById(R.id.shareButton);
 
         //
         favoriteAdapter = new FavoriteAdapter(new ArrayList<Favorite>(), new OnItemClickListener() {
@@ -125,6 +124,7 @@ public class FavoritesFragment extends Fragment {
                                 //favorites.remove(pos);
                                 loadData();
                                 Toast.makeText(getActivity(), "Registro deletado com sucesso", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                 ));

@@ -232,10 +232,10 @@ public abstract class SwipeHelper extends ItemTouchHelper.SimpleCallback {
             // Draw background
             p.setColor(color);
             c.drawRect(rect, p);
-
+            //p.setTextSize();
             // Draw Text
             p.setColor(Color.WHITE);
-            //p.setTextSize(LayoutHelper.getPx(, 12));
+            p.setTextSize(Float.parseFloat("20"));
 
             Rect r = new Rect();
             float cHeight = rect.height();

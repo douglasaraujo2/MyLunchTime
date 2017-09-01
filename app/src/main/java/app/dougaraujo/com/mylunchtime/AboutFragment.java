@@ -8,14 +8,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.facebook.share.widget.ShareDialog;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AboutFragment extends Fragment {
+public class AboutFragment extends Fragment implements View.OnClickListener {
     private TextView tvVersionCode;
+    private Button shareButton;
+    private ShareDialog shareDialog;
 
     public AboutFragment() {
         // Required empty public constructor
@@ -27,6 +32,10 @@ public class AboutFragment extends Fragment {
                              Bundle savedInstanceState) {
         View itemView = inflater.inflate(R.layout.fragment_about, container, false);
         tvVersionCode = (TextView) itemView.findViewById(R.id.tvVersionCode);
+        shareButton = (Button) itemView.findViewById(R.id.shareButton);
+        shareButton.setOnClickListener(this);
+
+        shareDialog = new ShareDialog(this);
         try {
             PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
             String version = pInfo.versionName;
@@ -41,4 +50,15 @@ public class AboutFragment extends Fragment {
         return itemView;
     }
 
+    public void shareContent(View view) {
+
+        shareDialog.show(null);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.shareButton) {
+            shareContent(v);
+        }
+    }
 }

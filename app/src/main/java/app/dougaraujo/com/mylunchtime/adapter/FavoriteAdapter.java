@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.share.widget.ShareButton;
+
 import java.util.List;
 
 import app.dougaraujo.com.mylunchtime.R;
@@ -40,6 +42,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                 onItemClickListener.onItemClick(favoriteList.get(position));
             }
         });
+
         holder.tvName.setText(favorite.getNome());
         holder.tvAddress.setText(favorite.getCep());
         holder.tvPhone.setText(favorite.getTelefone());
@@ -55,10 +58,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         notifyDataSetChanged();
     }
 
+
     public class FavoriteViewHolder extends RecyclerView.ViewHolder {
         TextView tvName;
         TextView tvAddress;
         TextView tvPhone;
+        ShareButton shareButton;
+
         public FavoriteViewHolder(View itemView) {
             super(itemView);
 
