@@ -30,6 +30,11 @@
     <string name="txt_version">Versão:</string>
     <string name="developed_by">Desenvolvido Por: Douglas Araujo</string>
     <string name="fill_phone">Preencha o Telefone</string>
-    <string name="fill_postal">Preencha o CEP</string>
+    <string name="fill_postal">Preencha o Endrereço</string>
     <string name="txt_share">Compartilhar</string>
+    <string name="txt_added">Favorito adicionado com sucesso</string>
+    <string name="txt_address">Endereço</string>
+    <string name="txt_update">Atualizado com sucesso</string>
+    <string name="txt_delete_favorite">Registro deletado com sucesso</string>
+    <string name="txt_wait">Aguarde...</string>
 </resources>

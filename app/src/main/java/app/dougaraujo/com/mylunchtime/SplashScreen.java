@@ -58,7 +58,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void loadData() {
-        usuarioAPI = APIUtils.getLinhaAPIVersion();
+        usuarioAPI = APIUtils.getLinhaAPIVersion("http://www.mocky.io/v2/");
         usuarioAPI.getUser().enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

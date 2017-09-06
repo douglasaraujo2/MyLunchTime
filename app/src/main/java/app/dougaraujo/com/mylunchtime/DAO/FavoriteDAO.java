@@ -19,7 +19,7 @@ public class FavoriteDAO {
     public static final String TABELA_FAVORITOS = "favoritos";
     public static final String COLUNA_ID = "id";
     public static final String COLUNA_NOME = "nome";
-    public static final String COLUNA_CEP = "postalcode";
+    public static final String COLUNA_END = "endereco";
     public static final String COLUNA_LATIT = "latitude";
     public static final String COLUNA_LOGINT = "longitude";
     public static final String COLUNA_TELE = "telefone";
@@ -40,7 +40,7 @@ public class FavoriteDAO {
                 favorite = new Favorite();
                 favorite.setId(cursor.getLong(cursor.getColumnIndex("id")));
                 favorite.setNome(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
-                favorite.setCep(cursor.getString(cursor.getColumnIndex(COLUNA_CEP)));
+                favorite.setEnd(cursor.getString(cursor.getColumnIndex(COLUNA_END)));
                 favorite.setLatitude(cursor.getString(cursor.getColumnIndex(COLUNA_LATIT)));
                 favorite.setLongitude(cursor.getString(cursor.getColumnIndex(COLUNA_LOGINT)));
                 favorite.setTelefone(cursor.getString(cursor.getColumnIndex(COLUNA_TELE)));
@@ -73,9 +73,7 @@ public class FavoriteDAO {
         if (cursor.moveToFirst()) {
             fav.setId(cursor.getLong(cursor.getColumnIndex("id")));
             fav.setNome(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
-            fav.setCep(cursor.getString(cursor.getColumnIndex(COLUNA_CEP)));
-            //favorite.setLatitude(cursor.getString(cursor.getColumnIndex(COLUNA_LATIT)));
-            //favorite.setLongitude(cursor.getString(cursor.getColumnIndex(COLUNA_LOGINT)));
+            fav.setEnd(cursor.getString(cursor.getColumnIndex(COLUNA_END)));
             fav.setTelefone(cursor.getString(cursor.getColumnIndex(COLUNA_TELE)));
         } else {
             throw new Error("Registro não encontrado");
@@ -83,12 +81,12 @@ public class FavoriteDAO {
         return fav;
     }
 
-    public void insertNew(String name, String postalCode, String phone, String lat, String longi) {
+    public void insertNew(String name, String address, String phone, String lat, String longi) {
         SQLiteDatabase db = banco.getWritableDatabase();
         try {
-            SQLiteStatement stmt = db.compileStatement("INSERT INTO favoritos(nome,postalcode,telefone,latitude,longitude) VALUES(?,?,?,?,?)");
+            SQLiteStatement stmt = db.compileStatement("INSERT INTO favoritos(nome,endereco,telefone,latitude,longitude) VALUES(?,?,?,?,?)");
             stmt.bindString(1, name);
-            stmt.bindString(2, postalCode);
+            stmt.bindString(2, address);
             stmt.bindString(3, phone);
             stmt.bindString(4, lat);
             stmt.bindString(5, longi);

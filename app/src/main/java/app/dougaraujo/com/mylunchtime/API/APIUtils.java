@@ -5,9 +5,15 @@ package app.dougaraujo.com.mylunchtime.API;
  */
 
 public class APIUtils {
-    public static final String BASE_URL = "http://www.mocky.io/v2/";
+    public static String BASE_URL = "";
 
-    public static UsuarioAPI getLinhaAPIVersion() {
-        return RetrofitClient.getClient(BASE_URL).create(UsuarioAPI.class);
+    public static UsuarioAPI getLinhaAPIVersion(String url) {
+        BASE_URL = url;
+        return RetrofitClient.getClient(url).create(UsuarioAPI.class);
+    }
+
+    public static GeolocationAPI getLinhaAPIVersionGeo(String url) {
+        BASE_URL = url;
+        return RetrofitClient.getClient(url).create(GeolocationAPI.class);
     }
 }

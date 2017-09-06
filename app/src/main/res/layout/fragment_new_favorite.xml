@@ -26,14 +26,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilPostalCode"
+                android:id="@+id/tilAddress"
                 style="@style/tilStyle"
                 android:padding="@dimen/padding_padrao">
 
                 <EditText
-                    android:id="@+id/etPostalCode"
+                    android:id="@+id/etAddress"
                     style="@style/etStyle"
-                    android:hint="@string/postal_code" />
+                    android:hint="@string/txt_address" />
             </android.support.design.widget.TextInputLayout>
 
 

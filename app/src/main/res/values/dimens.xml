@@ -21,4 +21,8 @@
     <dimen name="dimen_welcome">18sp</dimen>
     <dimen name="dimen_texto_dev">18sp</dimen>
     <dimen name="dimen_logo_header">70dp</dimen>
+    <dimen name="dimen_bottom_card">12dp</dimen>
+    <dimen name="dimen_radius">18dp</dimen>
+    <dimen name="dimen_icon_width">100dp</dimen>
+    <dimen name="dimen_icon_height">20dp</dimen>
 </resources>

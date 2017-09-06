@@ -1,6 +1,7 @@
 package app.dougaraujo.com.mylunchtime;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import app.dougaraujo.com.mylunchtime.model.Favorite;
  * A simple {@link Fragment} subclass.
  */
 public class EditFavoriteFragment extends Fragment implements View.OnClickListener {
+    ProgressDialog dialog;
     private Favorite fav;
     private EditText etName;
     private EditText etPostalCode;
@@ -29,7 +31,6 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
     private TextInputLayout tilPostalCode;
     private TextInputLayout tilPhone;
     private Button btnNewFavorite;
-
     public EditFavoriteFragment() {
         // Required empty public constructor
     }
@@ -80,7 +81,6 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
     public void saveUpdate(View view) throws Throwable {
         String nome = etName.getText().toString();
         String phone = etPhone.getText().toString();
-//        String cep = etPostalCode.getText().toString();
         if (nome.isEmpty()) {
             tilName.setError(getString(R.string.fill_name));
             tilName.setErrorEnabled(true);
@@ -100,11 +100,14 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
 
         }
         FavoriteDAO favoriteDAO = new FavoriteDAO(getActivity());
+        dialog = ProgressDialog.show(getActivity(), "",
+                getString(R.string.txt_wait), true);
         favoriteDAO.updateFavorite(nome, phone, fav.getId());
         clearFields();
-        Toast.makeText(getActivity(), "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), getString(R.string.txt_update), Toast.LENGTH_SHORT).show();
         //getActivity().getFragmentManager().popBackStack();
         getFragmentManager().popBackStackImmediate();
+        dialog.hide();
     }
 
 

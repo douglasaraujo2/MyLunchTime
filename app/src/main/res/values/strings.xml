@@ -42,7 +42,13 @@
     <string name="txt_version">Version Code:</string>
     <string name="developed_by">Developed By: Douglas Araujo</string>
     <string name="fill_phone">Fill the phone</string>
-    <string name="fill_postal">Fill the postal code</string>
+    <string name="fill_postal">Fill the address</string>
     <string name="maps_key" translatable="false">AIzaSyDHCf2HyStY1Mllc4zUZMA-7u16Ji-7JWU</string>
     <string name="txt_share">Share</string>
+    <string name="txt_address">Address</string>
+    <string name="txt_added">Favorite added with success</string>
+    <string name="txt_update">Favorite updated</string>
+    <string name="txt_delete_favorite">Favorite removed</string>
+    <string name="txt_maps_url" translatable="false">https://maps.googleapis.com/</string>
+    <string name="txt_wait">Wait...</string>
 </resources>

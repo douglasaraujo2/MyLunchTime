@@ -20,7 +20,7 @@ public class Favorite implements Parcelable {
         }
     };
     private String nome;
-    private String cep;
+    private String end;
     private String latitude;
     private String longitude;
     private String telefone;
@@ -53,12 +53,12 @@ public class Favorite implements Parcelable {
         this.nome = nome;
     }
 
-    public String getCep() {
-        return cep;
+    public String getEnd() {
+        return end;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setEnd(String end) {
+        this.end = end;
     }
 
     public String getLatitude() {
@@ -84,7 +84,7 @@ public class Favorite implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(cep);
+        dest.writeString(end);
         dest.writeLong(id);
         dest.writeString(telefone);
         dest.writeString(nome);
