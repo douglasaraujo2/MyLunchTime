@@ -51,4 +51,10 @@
     <string name="txt_delete_favorite">Favorite removed</string>
     <string name="txt_maps_url" translatable="false">https://maps.googleapis.com/</string>
     <string name="txt_wait">Wait...</string>
+    <string name="txt_sure">Are you sure, you want to delete?</string>
+    <string name="txt_yes">Yes</string>
+    <string name="txt_no">No</string>
+    <string name="txt_favorite">Favorite of today: </string>
+    <string name="txt_phone_number">Phone Number: </string>
+    <string name="maps_url" translatable="false">http://maps.google.com/maps?saddr=</string>
 </resources>

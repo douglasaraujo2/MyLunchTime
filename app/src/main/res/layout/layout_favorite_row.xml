@@ -35,7 +35,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_padrao">
 
 
             <ImageView
@@ -43,6 +44,15 @@
                 style="@style/iconStyle"
                 android:src="@drawable/phone" />
 
+            <ImageView
+                android:id="@+id/ivNavigation"
+                style="@style/iconStyle"
+                android:src="@drawable/navigation" />
+
+            <ImageView
+                android:id="@+id/ivShare"
+                style="@style/iconStyle"
+                android:src="@drawable/share" />
             <ImageView
                 android:id="@+id/ivEdit"
                 style="@style/iconStyle"

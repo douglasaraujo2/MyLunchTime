@@ -9,5 +9,6 @@ CREATE TABLE IF NOT EXISTS favoritos (
     endereco varchar(255),
     telefone varchar(40),
     latitude varchar(200),
-    longitude varchar(200)
+    longitude varchar(200),
+    usuario varchar(255)
 );

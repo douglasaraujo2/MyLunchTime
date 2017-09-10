@@ -1,7 +1,9 @@
 package app.dougaraujo.com.mylunchtime.adapter;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -33,6 +35,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     public FavoriteAdapter(List<Favorite> favoriteList) {
         this.favoriteList = favoriteList;
+//        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -48,6 +51,12 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         holder.tvName.setText(favorite.getNome());
         holder.tvAddress.setText(favorite.getEnd());
         holder.tvPhone.setText(favorite.getTelefone());
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onItemClickListener.onItemClick(favoriteList.get(position));
+//            }
+//        });
         holder.ivCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,14 +93,49 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity context = (MainActivity) v.getContext();
-                Favorite favorito = favoriteList.get(position);
-                FavoriteDAO favoriteDAO = new FavoriteDAO(context);
-                favoriteDAO.deleteFavorite(favorito.getId());
-                favoriteList.remove(position);
-                update(favoriteList);
-                notifyDataSetChanged();
-                Toast.makeText(context, context.getString(R.string.txt_delete_favorite), Toast.LENGTH_SHORT).show();
+                final MainActivity context = (MainActivity) v.getContext();
+                new AlertDialog.Builder(context)
+                        .setMessage(context.getString(R.string.txt_sure))
+                        .setCancelable(false)
+                        .setPositiveButton(context.getString(R.string.txt_yes), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Favorite favorito = favoriteList.get(position);
+                                FavoriteDAO favoriteDAO = new FavoriteDAO(context);
+                                favoriteDAO.deleteFavorite(favorito.getId());
+                                favoriteList.remove(position);
+                                update(favoriteList);
+                                notifyDataSetChanged();
+                                Toast.makeText(context, context.getString(R.string.txt_delete_favorite), Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton(context.getString(R.string.txt_no), null)
+                        .show();
+
+            }
+        });
+        holder.ivNavigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                String uri = "geo:" + favoriteList.get(position).getLatitude() + ","
+                        + favoriteList.get(position).getLongitude() + "?q=" + favoriteList.get(position).getLatitude()
+                        + "," + favoriteList.get(position).getLongitude();
+                context.startActivity(new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse(uri)));
+            }
+        });
+        holder.ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/html");
+                String textShare = context.getString(R.string.txt_favorite);
+                textShare += " " + favoriteList.get(position).getNome() + " ";
+                textShare += context.getString(R.string.txt_phone_number) + " " + favoriteList.get(position).getTelefone();
+                textShare += context.getString(R.string.maps_url) + favoriteList.get(position).getLatitude() + "," + favoriteList.get(position).getLongitude();
+                shareIntent.putExtra(Intent.EXTRA_TEXT, textShare);
+                context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.app_name)));
             }
         });
     }
@@ -114,6 +158,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         ImageView ivCall;
         ImageView ivEdit;
         ImageView ivDelete;
+        ImageView ivNavigation;
+        ImageView ivShare;
 
         public FavoriteViewHolder(View itemView) {
             super(itemView);
@@ -124,6 +170,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             ivCall = (ImageView) itemView.findViewById(R.id.ivCall);
             ivEdit = (ImageView) itemView.findViewById(R.id.ivEdit);
             ivDelete = (ImageView) itemView.findViewById(R.id.ivDelete);
+            ivNavigation = (ImageView) itemView.findViewById(R.id.ivNavigation);
+            ivShare = (ImageView) itemView.findViewById(R.id.ivShare);
+
         }
     }
 }

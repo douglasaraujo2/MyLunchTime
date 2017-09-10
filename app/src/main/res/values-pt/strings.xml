@@ -37,4 +37,10 @@
     <string name="txt_update">Atualizado com sucesso</string>
     <string name="txt_delete_favorite">Registro deletado com sucesso</string>
     <string name="txt_wait">Aguarde...</string>
+    <string name="txt_sure">Tem certeza que deseja remover?</string>
+    <string name="txt_yes">Sim</string>
+    <string name="txt_no">Não</string>
+    <string name="maps_url"></string>
+    <string name="txt_phone_number">Telefone</string>
+    <string name="txt_favorite">Favorito de Hoje</string>
 </resources>

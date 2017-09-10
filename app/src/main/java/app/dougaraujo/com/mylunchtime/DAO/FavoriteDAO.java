@@ -23,15 +23,17 @@ public class FavoriteDAO {
     public static final String COLUNA_LATIT = "latitude";
     public static final String COLUNA_LOGINT = "longitude";
     public static final String COLUNA_TELE = "telefone";
+    public static final String COLUNA_USUARIO = "usuario";
+
     private DBOpenHelper banco;
 
     public FavoriteDAO(Context context) {
         banco = new DBOpenHelper(context);
     }
 
-    public List<Favorite> getAll() {
+    public List<Favorite> getAll(String usuario) {
         List<Favorite> favorites = new LinkedList<>();
-        String query = "SELECT * FROM " + TABELA_FAVORITOS;
+        String query = "SELECT * FROM " + TABELA_FAVORITOS + " where usuario = '" + usuario + "'";
         SQLiteDatabase db = banco.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Favorite favorite = null;
@@ -81,15 +83,16 @@ public class FavoriteDAO {
         return fav;
     }
 
-    public void insertNew(String name, String address, String phone, String lat, String longi) {
+    public void insertNew(String name, String address, String phone, String lat, String longi, String usuario) {
         SQLiteDatabase db = banco.getWritableDatabase();
         try {
-            SQLiteStatement stmt = db.compileStatement("INSERT INTO favoritos(nome,endereco,telefone,latitude,longitude) VALUES(?,?,?,?,?)");
+            SQLiteStatement stmt = db.compileStatement("INSERT INTO favoritos(nome,endereco,telefone,latitude,longitude,usuario) VALUES(?,?,?,?,?,?)");
             stmt.bindString(1, name);
             stmt.bindString(2, address);
             stmt.bindString(3, phone);
             stmt.bindString(4, lat);
             stmt.bindString(5, longi);
+            stmt.bindString(6, usuario);
             long rowId = stmt.executeInsert();
             db.close();
         } catch (Exception e) {

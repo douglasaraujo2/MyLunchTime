@@ -1,6 +1,7 @@
 package app.dougaraujo.com.mylunchtime;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -75,7 +76,9 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
                         longitude = response.body().getResults().get(0).getGeometry().getLocation().getLng();
                         String lat = new Double(latitude).toString();
                         String longi = new Double(longitude).toString();
-                        favoriteDAO.insertNew(name, address, phone, lat, longi);
+                        SharedPreferences pref = getActivity().getSharedPreferences("info", getActivity().MODE_PRIVATE);
+                        String usuario = pref.getString("username", "");
+                        favoriteDAO.insertNew(name, address, phone, lat, longi, usuario);
                         Toast.makeText(getActivity(), R.string.txt_added, Toast.LENGTH_SHORT).show();
                         clearFields();
                         dialog.hide();
@@ -85,6 +88,7 @@ public class NewFavoriteFragment extends Fragment implements View.OnClickListene
 
             @Override
             public void onFailure(Call<ResultsModel> call, Throwable t) {
+                dialog.hide();
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

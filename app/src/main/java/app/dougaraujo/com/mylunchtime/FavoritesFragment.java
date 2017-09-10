@@ -3,6 +3,7 @@ package app.dougaraujo.com.mylunchtime;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -37,6 +38,7 @@ public class FavoritesFragment extends Fragment {
     ShareButton shareButton;
     private FavoriteAdapter favoriteAdapter;
     private List<Favorite> favorites;
+
     public FavoritesFragment() {
         // Required empty public constructor
 
@@ -53,6 +55,7 @@ public class FavoritesFragment extends Fragment {
         return true;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,6 +67,28 @@ public class FavoritesFragment extends Fragment {
         }
         //
         favoriteAdapter = new FavoriteAdapter(new ArrayList<Favorite>());
+//                , new OnItemClickListener() {
+//            @Override
+//            public void onItemClick(Favorite fav) {
+////                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+////                shareIntent.setType("text/plain");
+//                String textShare = "Restaurante de Hoje: ";
+//                textShare += fav.getNome();
+//                textShare += "/n Para quem quiser o endereço: "+fav.getEnd();
+//                textShare += "/n Telefone: "+fav.getTelefone();
+////                shareIntent.putExtra(Intent.EXTRA_TEXT, textShare);
+
+//                String uri = "http://maps.google.com/maps?saddr=" +fav.getLatitude()+","+fav.getLongitude();
+//
+//                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                sharingIntent.setType("text/plain");
+////                String ShareSub = "Here is my location";
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, textShare);
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, uri);
+//                startActivity(Intent.createChooser(sharingIntent, getString(R.string.app_name)));
+////                startActivity(Intent.createChooser(shareIntent, getString(R.string.app_name)));
+//            }
+//        });
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 //;        itemTouchHelper.attachToRecyclerView(rvFavorites);
         rvFavorites.setLayoutManager(layoutManager);
@@ -77,7 +102,9 @@ public class FavoritesFragment extends Fragment {
 
     public void loadData() {
         FavoriteDAO favoriteDAO = new FavoriteDAO(getActivity());
-        favorites = favoriteDAO.getAll();
+        SharedPreferences pref = getActivity().getSharedPreferences("info", getActivity().MODE_PRIVATE);
+        String usuario = pref.getString("username", "");
+        favorites = favoriteDAO.getAll(usuario);
         if (favorites.isEmpty()) {
             rvFavorites.setVisibility(View.GONE);
             tvEmpty.setVisibility(View.VISIBLE);
@@ -87,8 +114,6 @@ public class FavoritesFragment extends Fragment {
         }
         favoriteAdapter.update(favorites);
     }
-
-
 
 
     public void shareContent(View view) {
@@ -101,4 +126,3 @@ public class FavoritesFragment extends Fragment {
     }
 }
 
-//https://maps.googleapis.com/maps/api/geocode/json?address=Avenida%20Prefeito%20Paulo%20Lauro,264&key=
