@@ -109,10 +109,9 @@ public class EditFavoriteFragment extends Fragment implements View.OnClickListen
                         longitude = response.body().getResults().get(0).getGeometry().getLocation().getLng();
                         String lat = new Double(latitude).toString();
                         String longi = new Double(longitude).toString();
-                        favoriteDAO.updateFavorite(name, phone, fav.getId());
+                        favoriteDAO.updateFavorite(name, phone, address, fav.getId());
                         clearFields();
                         Toast.makeText(getActivity(), getString(R.string.txt_update), Toast.LENGTH_SHORT).show();
-                        //getActivity().getFragmentManager().popBackStack();
                         getFragmentManager().popBackStackImmediate();
                         dialog.hide();
                     }

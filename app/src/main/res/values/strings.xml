@@ -57,4 +57,5 @@
     <string name="txt_favorite">Favorite of today: </string>
     <string name="txt_phone_number">Phone Number: </string>
     <string name="maps_url" translatable="false">http://maps.google.com/maps?saddr=</string>
+    <string name="txt_not_registed">User not registed</string>
 </resources>

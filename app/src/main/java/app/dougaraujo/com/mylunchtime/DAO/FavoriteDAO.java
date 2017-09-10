@@ -101,13 +101,14 @@ public class FavoriteDAO {
 
     }
 
-    public void updateFavorite(String name, String phone, long id) {
+    public void updateFavorite(String name, String phone, String address, long id) {
         SQLiteDatabase db = banco.getWritableDatabase();
         try {
-            SQLiteStatement stmt = db.compileStatement("UPDATE favoritos set nome = ?,telefone = ? where id = ?");
+            SQLiteStatement stmt = db.compileStatement("UPDATE favoritos set nome = ?,telefone = ?,endereco = ? where id = ?");
             stmt.bindString(1, name);
             stmt.bindString(2, phone);
-            stmt.bindLong(3, id);
+            stmt.bindString(3, address);
+            stmt.bindLong(4, id);
             stmt.executeUpdateDelete();
             db.close();
         } catch (Exception e) {

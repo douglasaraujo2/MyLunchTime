@@ -1,5 +1,6 @@
 package app.dougaraujo.com.mylunchtime;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -67,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "",
+                        getString(R.string.txt_wait), true);
                 // App code
                 GraphRequest request = GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
@@ -94,8 +97,8 @@ public class LoginActivity extends AppCompatActivity {
                 parameters.putString("fields", "id,name,email,gender,birthday");
                 request.setParameters(parameters);
                 request.executeAsync();
+                dialog.hide();
             }
-
             @Override
             public void onCancel() {
                 // App code
@@ -127,6 +130,8 @@ public class LoginActivity extends AppCompatActivity {
         String senha = tilPass.getEditText().getText().toString();
         UsuarioDAO usuarioDAO = new UsuarioDAO(this);
         Usuario usuarioObj = new Usuario();
+        ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "",
+                getString(R.string.txt_wait), true);
         usuarioObj = usuarioDAO.getBy(usuario, senha);
         if (usuarioObj != null) {
             SharedPreferences pref = getSharedPreferences("info", MODE_PRIVATE);
@@ -137,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             editor.putString("username", usuario);
             editor.apply();
+            dialog.hide();
             navegarViewPrincipal();
 
             //LoginActivity.this.finish();

@@ -1,5 +1,6 @@
 package app.dougaraujo.com.mylunchtime;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -40,11 +41,14 @@ public class RegisterActivity extends AppCompatActivity {
             isError = true;
         }
         if (!isError) {
+            ProgressDialog dialog = ProgressDialog.show(RegisterActivity.this, "",
+                    getString(R.string.txt_wait), true);
             UsuarioDAO usuario = new UsuarioDAO(this);
             boolean isInsert = usuario.insertNew(name, pass);
+            dialog.hide();
             if (!isInsert) {
 
-                Toast.makeText(this, "Usuário não cadastrado", Toast.LENGTH_SHORT);
+                Toast.makeText(this, getString(R.string.txt_not_registed), Toast.LENGTH_SHORT);
             } else {
                 RegisterActivity.this.finish();
             }
