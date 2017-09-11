@@ -133,7 +133,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                 String textShare = context.getString(R.string.txt_favorite);
                 textShare += " " + favoriteList.get(position).getNome() + " ";
                 textShare += context.getString(R.string.txt_phone_number) + " " + favoriteList.get(position).getTelefone();
-                textShare += context.getString(R.string.maps_url) + favoriteList.get(position).getLatitude() + "," + favoriteList.get(position).getLongitude();
+                textShare += " http://maps.google.com/maps?saddr=";
+                textShare += favoriteList.get(position).getLatitude() + "," + favoriteList.get(position).getLongitude();
                 shareIntent.putExtra(Intent.EXTRA_TEXT, textShare);
                 context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.app_name)));
             }
