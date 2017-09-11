@@ -37,7 +37,7 @@ public class MeuFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setContentTitle(title)
-                .setSmallIcon(R.mipmap.ic_stat_logo_lunchtime)
+                .setSmallIcon(R.drawable.ic_stat_lunch)
                 .setContentText(body)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
